@@ -1,0 +1,15 @@
+name: CI Pipeline
+on:
+  push:
+
+jobs:
+  job1:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses:  kk789kk856-cmyk/test/.github/actions/common-pwsh/
+
+      - name: Run Greet
+        shell: pwsh
+        run: Build-App
