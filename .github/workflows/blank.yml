@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses:  kk789kk856-cmyk/test/.github/actions/common-pwsh/
+      - uses:  kk789kk856-cmyk/test/.github/actions/common-pwsh/@main
 
       - name: Run Greet
         shell: pwsh
