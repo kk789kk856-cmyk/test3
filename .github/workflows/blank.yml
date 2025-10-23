@@ -1,48 +1,14 @@
 name: CI Pipeline
+
 on:
   push:
 
 env:
-  # PowerShell 非終止錯誤
-  ErrorActionPreference: Stop
-  # after_script 超時
-  RUNNER_AFTER_SCRIPT_TIMEOUT: 10m
-
-  # 工具路徑
-  MSBuildPath: 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\amd64\MSBuild.exe'
-  NuGetPath: 'C:\tools\nuget.exe'
-  ghCliPath: 'C:\tools\gh.exe'
-  smtpServer: 'ms.colatour.com.tw'
-
-  # 靜態路徑
-  456BasePath: '\\test05\456'
-  runnerOutputsBase: '\\test01\Outputs'
-  deployBinPath: '\\test05\bin'
-  webconfigBasePath: '\\test05\456\WebConfig'
-  lockFileBasePath: '\\test01\123'
-  destSiteList: ''
+  DevOpsPath: '\\test01\DevOps'
+  # GitLab 使用者資訊檔案路徑
+  userInfoFilePath: '$DevOpsPath\GitLab-Userinfo.json'
 
 jobs:
-  default:
-    runs-on: windows-latest
-    steps:
-      - name: Set env
-        shell: pwsh
-        run: |
-          # Repo / Pipeline 相關資訊
-          $repoName = '${{ github.event.repository.name }}'
-
-          # 絕對路徑
-          $Env:userInfoFilePath = "$Env:456BasePath\GitHub-Userinfo.json"
-          $Env:projectInfoFilePath = "$Env:456BasePath\Source-project.json"
-          $Env:slnFilePath = "$Env:GITHUB_WORKSPACE\$repoName.sln"
-          $Env:sourceBinPath = "$Env:GITHUB_WORKSPACE\bin"
-          $Env:customDestFolderName = "$repoName"
-          $Env:artifactsBasePath = "$Env:runnerOutputsBase\Artifacts\$Env:GITHUB_REPOSITORY\$Env:GITHUB_RUN_ID"
-          $Env:artifactsDestPath = "$Env:artifactsBasePath\$repoName"
-          $Env:artifactsBinPath = "$Env:artifactsBasePath\bin"
-          $Env:artifactsRuntimeFilesPath = "$Env:artifactsBasePath\RuntimeFiles"
-
   build:
     runs-on: windows-latest
     steps:
@@ -51,11 +17,3 @@ jobs:
         run: |
           # 測試輸出
           $Env:userInfoFilePath 
-          $Env:projectInfoFilePath 
-          $Env:slnFilePath
-          $Env:sourceBinPath 
-          $Env:customDestFolderName
-          $Env:artifactsBasePath
-          $Env:artifactsDestPath
-          $Env:artifactsBinPath
-          $Env:artifactsRuntimeFilesPath
