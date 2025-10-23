@@ -8,6 +8,12 @@ env:
   # after_script 超時
   RUNNER_AFTER_SCRIPT_TIMEOUT: 10m
 
+  # 工具路徑
+  MSBuildPath: 'C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\amd64\MSBuild.exe'
+  NuGetPath: 'C:\tools\nuget.exe'
+  ghCliPath: 'C:\tools\gh.exe'
+  smtpServer: 'ms.colatour.com.tw'
+
   # 靜態路徑
   456BasePath: '\\test05\456'
   runnerOutputsBase: '\\test01\Outputs'
@@ -17,13 +23,10 @@ env:
   destSiteList: ''
 
 jobs:
-  build:
+  default:
     runs-on: windows-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set dynamic paths
+      - name: Set env
         shell: pwsh
         run: |
           # Repo / Pipeline 相關資訊
@@ -40,6 +43,12 @@ jobs:
           $Env:artifactsBinPath = "$Env:artifactsBasePath\bin"
           $Env:artifactsRuntimeFilesPath = "$Env:artifactsBasePath\RuntimeFiles"
 
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: build
+        shell: pwsh
+        run: |
           # 測試輸出
           $Env:userInfoFilePath 
           $Env:projectInfoFilePath 
