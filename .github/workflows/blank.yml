@@ -3,17 +3,20 @@ name: CI Pipeline
 on:
   push:
 
-env:
-  DevOpsPath: '\\test01\DevOps'
-  # GitLab 使用者資訊檔案路徑
-  userInfoFilePath: '$Env:DevOpsPath\GitLab-Userinfo.json'
+default:
+  run:
+    shell:powershell
 
 jobs:
   build:
     runs-on: windows-latest
     steps:
-      - name: build
-        shell: pwsh
+      - name: fuction
         run: |
-          # 測試輸出
-          $Env:userInfoFilePath 
+          function test {
+              Write-Host -Object "123";    
+          }
+
+      - name: build
+        run: |
+          test;
