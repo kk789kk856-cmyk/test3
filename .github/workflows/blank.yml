@@ -6,7 +6,7 @@ on:
 env:
   DevOpsPath: '\\test01\DevOps'
   # GitLab 使用者資訊檔案路徑
-  userInfoFilePath: '$DevOpsPath\GitLab-Userinfo.json'
+  userInfoFilePath: '$Env:DevOpsPath\GitLab-Userinfo.json'
 
 jobs:
   build:
