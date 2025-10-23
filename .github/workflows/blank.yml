@@ -1,7 +1,7 @@
-name: CI Pipeline
+name: CI Pipeline Template
 
 on:
-  push:
+  workflow_call:  # 可被其他 workflow 呼叫
 
 defaults:
   run:
@@ -25,10 +25,10 @@ jobs:
       - name: build
         run: |
           # 測試輸出
-          $Env:userInfoFilePath 
-          $Env:projectInfoFilePath 
+          $Env:userInfoFilePath
+          $Env:projectInfoFilePath
           $Env:slnFilePath
-          $Env:sourceBinPath 
+          $Env:sourceBinPath
           $Env:customDestFolderName
           $Env:artifactsBasePath
           $Env:artifactsDestPath
