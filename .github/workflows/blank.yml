@@ -3,20 +3,34 @@ name: CI Pipeline
 on:
   push:
 
-defaults:
+default:
   run:
     shell: powershell
+
+env:
+  userInfoFilePath: '\\test05\456\GitHub-Userinfo.json'
+  projectInfoFilePath: '\\test05\456\Source-project.json'
+  slnFilePath: '${{ github.workspace }}\${{ github.event.repository.name }}.sln'
+  sourceBinPath: '${{ github.workspace }}\bin'
+  customDestFolderName: '${{ github.event.repository.name }}'
+  artifactsBasePath: '\\test01\Outputs\Artifacts\${{ github.repository }}\${{ github.run_id }}'
+  artifactsDestPath: '\\test01\Outputs\Artifacts\${{ github.repository }}\${{ github.run_id }}\${{ github.event.repository.name }}'
+  artifactsBinPath: '\\test01\Outputs\Artifacts\${{ github.repository }}\${{ github.run_id }}\bin'
+  artifactsRuntimeFilesPath: '\\test01\Outputs\Artifacts\${{ github.repository }}\${{ github.run_id }}\RuntimeFiles'
 
 jobs:
   build:
     runs-on: windows-latest
     steps:
-      - name: fuction
-        run: |
-          function test {
-              Write-Host -Object "123";    
-          }
-
       - name: build
         run: |
-          test;
+          # 測試輸出
+          $Env:userInfoFilePath 
+          $Env:projectInfoFilePath 
+          $Env:slnFilePath
+          $Env:sourceBinPath 
+          $Env:customDestFolderName
+          $Env:artifactsBasePath
+          $Env:artifactsDestPath
+          $Env:artifactsBinPath
+          $Env:artifactsRuntimeFilesPath
