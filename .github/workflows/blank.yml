@@ -13,4 +13,4 @@ jobs:
       - name: Print all environment variables (PowerShell)
         shell: pwsh
         run: |
-          Write-Host -Object $test;
+          Write-Host -Object $Env:test;
