@@ -3,9 +3,9 @@ name: CI Pipeline
 on:
   push:
 
-default:
+defaults:
   run:
-    shell:powershell
+    shell: powershell
 
 jobs:
   build:
