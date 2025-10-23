@@ -1,16 +1,52 @@
 name: CI Pipeline
-
 on:
   push:
 
 env:
-   slnFilePath: '${{ github.workspace }}\${{ github.event.repository.name }}.sln'
+  # PowerShell 非終止錯誤
+  ErrorActionPreference: Stop
+  # after_script 超時
+  RUNNER_AFTER_SCRIPT_TIMEOUT: 10m
+
+  # 靜態路徑
+  456BasePath: '\\test05\456'
+  runnerOutputsBase: '\\test01\Outputs'
+  deployBinPath: '\\test05\bin'
+  webconfigBasePath: '\\test05\456\WebConfig'
+  lockFileBasePath: '\\test01\123'
+  destSiteList: ''
 
 jobs:
-  show-vars:
+  build:
     runs-on: windows-latest
     steps:
-      - name: Print all environment variables (PowerShell)
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set dynamic paths
         shell: pwsh
         run: |
-          Write-Host -Object $Env:slnFilePath;
+          # Repo / Pipeline 相關資訊
+          $repoName = '${{ github.event.repository.name }}'
+
+          # 絕對路徑
+          $Env:userInfoFilePath = "$Env:456BasePath\GitHub-Userinfo.json"
+          $Env:projectInfoFilePath = "$Env:456BasePath\Source-project.json"
+          $Env:slnFilePath = "$Env:GITHUB_WORKSPACE\$repoName.sln"
+          $Env:sourceBinPath = "$Env:GITHUB_WORKSPACE\bin"
+          $Env:customDestFolderName = "$repoName"
+          $Env:artifactsBasePath = "$Env:runnerOutputsBase\Artifacts\$Env:GITHUB_REPOSITORY\$Env:GITHUB_RUN_ID"
+          $Env:artifactsDestPath = "$Env:artifactsBasePath\$repoName"
+          $Env:artifactsBinPath = "$Env:artifactsBasePath\bin"
+          $Env:artifactsRuntimeFilesPath = "$Env:artifactsBasePath\RuntimeFiles"
+
+          # 測試輸出
+          $Env:userInfoFilePath 
+          $Env:projectInfoFilePath 
+          $Env:slnFilePath
+          $Env:sourceBinPath 
+          $Env:customDestFolderName
+          $Env:artifactsBasePath
+          $Env:artifactsDestPath
+          $Env:artifactsBinPath
+          $Env:artifactsRuntimeFilesPath
