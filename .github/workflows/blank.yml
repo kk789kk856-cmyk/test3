@@ -1,6 +1,10 @@
 name: CI Pipeline
+
 on:
   push:
+
+env:
+  test: $GITHUB_WORKSPACE               
 
 jobs:
   show-vars:
@@ -9,4 +13,4 @@ jobs:
       - name: Print all environment variables (PowerShell)
         shell: pwsh
         run: |
-          Get-ChildItem Env: | Sort-Object Name
+          Write-Host -Object $test;
