@@ -1,9 +1,11 @@
 name: Default Template
+description: "Defines a reusable PowerShell function"
 
 runs:
+  using: "composite"
   steps:
-    -  run: |
+    - run: |
         function New-Section {
           Write-Host "123"
         }
-        shell: powershell
+      shell: pwsh
