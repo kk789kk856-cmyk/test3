@@ -19,10 +19,11 @@ env:
   artifactsRuntimeFilesPath: '\\test01\Outputs\Artifacts\${{ github.repository }}\${{ github.run_id }}\RuntimeFiles'
 
 jobs:
+  test:
+    uses: kk789kk856-cmyk/test3@main
   build:
     runs-on: windows-latest
     steps:
-      - uses: kk789kk856-cmyk/test3@main
       - name: build
         run: |
           # 測試輸出
