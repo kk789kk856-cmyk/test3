@@ -22,8 +22,7 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/common
+      - uses: kk789kk856-cmyk/test3/.github/actions/common@main
       - name: build
         run: |
           # 測試輸出
