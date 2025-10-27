@@ -22,9 +22,11 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+      - uses: ./.github/workflows/default.yml
       - name: build
         run: |
           # 測試輸出
+          New-Section;
           $Env:userInfoFilePath
           $Env:projectInfoFilePath
           $Env:slnFilePath
