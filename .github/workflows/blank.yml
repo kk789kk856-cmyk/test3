@@ -29,12 +29,3 @@ jobs:
         run: |
           # 測試輸出
           Get-ChildItem -Path .;
-          $Env:userInfoFilePath
-          $Env:projectInfoFilePath
-          $Env:slnFilePath
-          $Env:sourceBinPath
-          $Env:customDestFolderName
-          $Env:artifactsBasePath
-          $Env:artifactsDestPath
-          $Env:artifactsBinPath
-          $Env:artifactsRuntimeFilesPath
