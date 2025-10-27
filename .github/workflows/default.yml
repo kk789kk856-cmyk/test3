@@ -1,18 +1,18 @@
-name: default
+name: Default Template
 
 on:
-  workflow_call:  # 可被其他 workflow 呼叫
+  workflow_call:  # 讓它可以被呼叫
 
 defaults:
   run:
-    shell: powershell
+    shell: pwsh
 
 jobs:
   default:
     runs-on: windows-latest
     steps:
-      - name: default
+      - name: Define and test function
         run: |
           function New-Section {
-            Write-Host -Object "123";
+            Write-Host "123"
           }
