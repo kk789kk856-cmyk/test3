@@ -22,7 +22,7 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/test3@main
+      - uses: actions/kk789kk856/test3@main
       - name: build
         run: |
           # 測試輸出
