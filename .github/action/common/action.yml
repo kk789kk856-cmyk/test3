@@ -1,0 +1,9 @@
+name: Default Template
+
+runs:
+  steps:
+    -  run: |
+        function New-Section {
+          Write-Host "123"
+        }
+        shell: powershell
