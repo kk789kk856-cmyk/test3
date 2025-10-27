@@ -23,7 +23,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/workflows/default.yml
+      - uses: ./.github/actions/common
       - name: build
         run: |
           # 測試輸出
