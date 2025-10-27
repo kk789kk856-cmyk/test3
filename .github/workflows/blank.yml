@@ -22,11 +22,11 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: kk789kk856-cmyk/test3/.github/actions/common@main
+      - uses: actions/test3@main
       - name: build
         run: |
           # 測試輸出
-          New-Section;
+          Get-ChildItem -Path .;
           $Env:userInfoFilePath
           $Env:projectInfoFilePath
           $Env:slnFilePath
