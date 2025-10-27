@@ -23,7 +23,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-         with:
+        with:
           repository: kk789kk856-cmyk/test3
       - name: build
         run: |
