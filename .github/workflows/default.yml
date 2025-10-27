@@ -1,8 +1,12 @@
 name: Default Template
 
+on:
+  workflow_call:  # 可被其他 workflow 呼叫
+
 defaults:
   run:
-    shell: pwsh
+    shell: powershell
+
 
 jobs:
   default:

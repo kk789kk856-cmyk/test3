@@ -21,9 +21,9 @@ env:
 jobs:
   build:
     runs-on: windows-latest
+    uses: ./.github/workflows/default.yml
     steps:
       - uses: actions/checkout@v4
-      - uses: ./.github/actions/common
       - name: build
         run: |
           # 測試輸出
