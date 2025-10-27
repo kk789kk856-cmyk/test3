@@ -1,8 +1,5 @@
 name: Default Template
 
-on:
-  workflow_call:  # 讓它可以被呼叫
-
 defaults:
   run:
     shell: pwsh
